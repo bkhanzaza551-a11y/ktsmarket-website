@@ -35,7 +35,7 @@ export default function Preloader({ onComplete }) {
         animation: 'preloader-pulse 2s ease-in-out infinite',
       }}>
         <img
-          src="/icon.png"
+          src="/icon.svg"
           alt="KTS Markets"
           style={{
             width: 80, height: 80, borderRadius: 18,

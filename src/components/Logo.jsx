@@ -5,11 +5,11 @@ export default function Logo({ size = 40, showText = true, style = {} }) {
       ...style,
     }}>
       <img
-        src="/icon.png"
+        src="/icon.svg"
         alt="KTS Markets"
         style={{
           width: size, height: size, borderRadius: size * 0.22,
-          objectFit: 'cover',
+          objectFit: 'contain',
         }}
         onError={(e) => {
           e.target.style.display = 'none';
