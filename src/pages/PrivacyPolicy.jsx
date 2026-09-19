@@ -1,5 +1,6 @@
-import { ArrowLeft, Shield, ChevronDown, ChevronUp } from 'lucide-react';
+import { Shield, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
+import Logo from '../components/Logo';
 
 const sections = [
   {
@@ -280,34 +281,42 @@ export default function PrivacyPolicy() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#0A0A0A' }}>
-      {/* Header */}
-      <div style={{
+      {/* Navbar */}
+      <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         background: 'rgba(10,10,10,0.95)', backdropFilter: 'blur(20px)',
         borderBottom: '1px solid #1E1E1E', padding: '0 24px',
       }}>
         <div style={{
-          maxWidth: 800, margin: '0 auto', display: 'flex',
-          alignItems: 'center', height: 64, gap: 12,
+          maxWidth: 1200, margin: '0 auto', display: 'flex',
+          alignItems: 'center', justifyContent: 'space-between', height: 72,
         }}>
-          <a href="/" style={{
-            color: '#D4A843', textDecoration: 'none',
-            display: 'flex', alignItems: 'center', gap: 6,
-          }}>
-            <ArrowLeft size={20} />
-            <span style={{ fontSize: 14, fontWeight: 600 }}>Back</span>
+          <a href="/" style={{ textDecoration: 'none' }}>
+            <Logo size={36} />
           </a>
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto',
-          }}>
-            <Shield size={18} color="#D4A843" />
-            <span style={{
-              fontFamily: "'Space Grotesk', sans-serif", fontSize: 15,
-              fontWeight: 700, color: '#FFF',
-            }}>Privacy Policy</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <a href="/" style={{
+              color: '#999', textDecoration: 'none', fontSize: 14,
+              fontWeight: 500, transition: 'color 0.2s',
+            }}
+            onMouseEnter={e => e.target.style.color = '#D4A843'}
+            onMouseLeave={e => e.target.style.color = '#999'}
+            >Home</a>
+            <a href="/#features" style={{
+              color: '#999', textDecoration: 'none', fontSize: 14,
+              fontWeight: 500, transition: 'color 0.2s',
+            }}
+            onMouseEnter={e => e.target.style.color = '#D4A843'}
+            onMouseLeave={e => e.target.style.color = '#999'}
+            >Features</a>
+            <a href="https://play.google.com/store/apps/details?id=com.ktsmarkets" target="_blank" rel="noreferrer" style={{
+              background: 'linear-gradient(135deg, #D4A843, #B8922E)',
+              color: '#0A0A0A', padding: '10px 24px', borderRadius: 8,
+              fontSize: 14, fontWeight: 700, textDecoration: 'none',
+            }}>Download App</a>
           </div>
         </div>
-      </div>
+      </nav>
 
       {/* Content */}
       <div style={{

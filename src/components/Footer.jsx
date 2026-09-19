@@ -1,4 +1,5 @@
-import { TrendingUp, Mail, MessageCircle } from 'lucide-react';
+import { Mail, MessageCircle } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Footer() {
   return (
@@ -12,20 +13,8 @@ export default function Footer() {
       }}>
         {/* Brand */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-            <div style={{
-              width: 36, height: 36, borderRadius: 10,
-              background: 'linear-gradient(135deg, #D4A843, #B8922E)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}>
-              <TrendingUp size={18} color="#0A0A0A" strokeWidth={2.5} />
-            </div>
-            <span style={{
-              fontFamily: "'Space Grotesk', sans-serif", fontSize: 18,
-              fontWeight: 700,
-            }}>
-              KTS <span style={{ color: '#D4A843' }}>Markets</span>
-            </span>
+          <div style={{ marginBottom: 16 }}>
+            <Logo size={32} />
           </div>
           <p style={{ fontSize: 13, color: '#666', lineHeight: 1.6, maxWidth: 280 }}>
             AI-powered trading platform for Gold markets.

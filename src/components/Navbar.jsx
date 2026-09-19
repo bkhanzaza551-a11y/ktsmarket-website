@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, TrendingUp } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,21 +32,8 @@ export default function Navbar() {
         maxWidth: 1200, margin: '0 auto', display: 'flex',
         alignItems: 'center', justifyContent: 'space-between', height: 72,
       }}>
-        {/* Logo */}
-        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-          <div style={{
-            width: 40, height: 40, borderRadius: 10,
-            background: 'linear-gradient(135deg, #D4A843, #B8922E)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <TrendingUp size={22} color="#0A0A0A" strokeWidth={2.5} />
-          </div>
-          <span style={{
-            fontFamily: "'Space Grotesk', sans-serif", fontSize: 22,
-            fontWeight: 700, color: '#FFF', letterSpacing: '-0.5px',
-          }}>
-            KTS <span style={{ color: '#D4A843' }}>Markets</span>
-          </span>
+        <a href="/" style={{ textDecoration: 'none' }}>
+          <Logo size={36} />
         </a>
 
         {/* Desktop Links */}
@@ -65,7 +53,7 @@ export default function Navbar() {
             background: 'linear-gradient(135deg, #D4A843, #B8922E)',
             color: '#0A0A0A', padding: '10px 24px', borderRadius: 8,
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
-            transition: 'transform 0.2s, box-shadow 0.2s',
+            transition: 'all 0.2s',
           }}
           onMouseEnter={e => { e.target.style.transform = 'scale(1.05)'; e.target.style.boxShadow = '0 0 20px rgba(212,168,67,0.4)'; }}
           onMouseLeave={e => { e.target.style.transform = 'scale(1)'; e.target.style.boxShadow = 'none'; }}

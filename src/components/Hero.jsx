@@ -1,4 +1,5 @@
 import { ArrowRight, Shield, Zap, Brain } from 'lucide-react';
+import LiveMarketPanel from './LiveMarketPanel';
 
 export default function Hero() {
   return (
@@ -111,48 +112,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right - Hero Visual */}
+          {/* Right - Live Market Panel */}
           <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }} className="hero-visual">
-            <div style={{
-              width: 380, height: 380, borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(212,168,67,0.15) 0%, transparent 70%)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              animation: 'float 6s ease-in-out infinite',
-            }}>
-              <div style={{
-                width: 280, height: 280, borderRadius: 30,
-                background: 'linear-gradient(135deg, #141414, #1A1A1A)',
-                border: '1px solid rgba(212,168,67,0.2)',
-                display: 'flex', flexDirection: 'column', alignItems: 'center',
-                justifyContent: 'center', gap: 16, padding: 30,
-                boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
-              }}>
-                <div style={{
-                  width: 60, height: 60, borderRadius: 16,
-                  background: 'linear-gradient(135deg, #D4A843, #B8922E)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  animation: 'pulse-gold 3s ease-in-out infinite',
-                }}>
-                  <Zap size={30} color="#0A0A0A" />
-                </div>
-                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 28, fontWeight: 800, color: '#FFF' }}>
-                  KTS <span style={{ color: '#D4A843' }}>Bot</span>
-                </div>
-                <div style={{ fontSize: 13, color: '#666', textAlign: 'center' }}>
-                  Automated Gold Trading<br />with AI Intelligence
-                </div>
-                <div style={{
-                  display: 'flex', gap: 8, marginTop: 8,
-                }}>
-                  {['XAUUSD', 'GOLD', 'MT5'].map(t => (
-                    <span key={t} style={{
-                      background: 'rgba(212,168,67,0.1)', color: '#D4A843',
-                      padding: '4px 10px', borderRadius: 6, fontSize: 11, fontWeight: 600,
-                    }}>{t}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <LiveMarketPanel />
           </div>
         </div>
       </div>
