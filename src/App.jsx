@@ -29,7 +29,12 @@ function HomePage() {
 }
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  const isLegalRoute = typeof window !== 'undefined' && 
+    (window.location.pathname.startsWith('/privacy') || 
+     window.location.pathname.startsWith('/terms') || 
+     window.location.pathname.startsWith('/delete-account'));
+  
+  const [loading, setLoading] = useState(!isLegalRoute);
   const handleComplete = useCallback(() => setLoading(false), []);
 
   return (
@@ -39,7 +44,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<PrivacyPolicy />} />
+          <Route path="/terms-conditions" element={<PrivacyPolicy />} />
+          <Route path="/delete-account" element={<PrivacyPolicy />} />
         </Routes>
       </BrowserRouter>
     </>

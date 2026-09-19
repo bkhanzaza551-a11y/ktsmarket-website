@@ -110,19 +110,18 @@ export default function LiveMarketPanel() {
   const loadMarketData = async () => {
     try {
       const data = await api.getMarketTicker();
-      if (data && data.ticker) {
-        const ticker = data.ticker;
-        const goldPrice = parseFloat(ticker.bid || '3245.00');
+      if (data && data.symbol) {
+        const goldPrice = parseFloat(data.bid_price || data.price || '3245.00');
         setGoldHistory(prev => {
           const next = [...prev, goldPrice];
           return next.length > 30 ? next.slice(-30) : next;
         });
         setMarketData({
           gold: {
-            price: ticker.bid || '3245.00',
-            change: parseFloat(ticker.change || '0'),
-            changePercent: parseFloat(ticker.changePercent || '0'),
-            spread: ticker.spread || '0.20',
+            price: goldPrice.toFixed(2),
+            change: parseFloat(data.change_24h || '0'),
+            changePercent: parseFloat(data.change_pct_24h || '0'),
+            spread: data.ask_price && data.bid_price ? (data.ask_price - data.bid_price).toFixed(2) : '0.20',
           },
           indices: [
             { symbol: 'EURUSD', name: 'Euro', price: (1 + Math.random() * 0.1).toFixed(4), change: (Math.random() - 0.5) * 0.005, changePercent: (Math.random() - 0.5) * 0.3, sparkData: generateSparkData(1.08, 0.001) },

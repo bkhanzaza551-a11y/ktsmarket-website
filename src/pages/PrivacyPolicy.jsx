@@ -6,233 +6,191 @@ const sections = [
   {
     id: 'information-collected',
     title: '1. Information We Collect',
-    content: `When you use KTS Markets, we may collect the following types of information:
+    content: `When you use the KTS Markets mobile application ("App") and website (collectively, the "Services"), we collect information necessary to deliver our educational and trading analytics features.
 
-**Personal Information:**
-• Name and email address (when you create an account)
-• Phone number (optional, for account verification)
-• Profile picture (optional, from Google Sign-In)
-• Security code (for account recovery)
+**A. Personal Information You Provide:**
+• **Account Registration:** Name, email address, password (bcrypt-hashed), and profile avatar.
+• **Contact Details:** Phone number or WhatsApp number (optional, for customer support and account verification).
+• **Security Credentials:** Account recovery security codes.
 
-**Trading & Account Information:**
-• MT5 account number and broker details (for bot configuration)
-• Trading history and performance data
-• Bot configuration and preferences
-• Demo account details (if submitted)
+**B. Trading & Analytics Information:**
+• **Broker & Terminal Integration:** MT5 account identifier, broker server name, and trader read-only configurations (used solely for bot tracking, analytics, and performance dashboard display).
+• **Demo Requests:** Demo account preferences and trading experience level.
 
-**Automatically Collected Information:**
-• Device type, model, and operating system
-• App version and usage statistics
-• IP address and approximate location
-• Login timestamps and session data
-• Push notification tokens (for delivering alerts)
+**C. Automatically Collected Device & Technical Data:**
+• **Device Information:** Device model, manufacturer, operating system version, and unique device identifiers.
+• **App Performance & Telemetry:** App version, crash diagnostics, feature usage statistics, and interaction telemetry.
+• **Network Data:** IP address, internet service provider, and approximate geographic location (country/city level).
+• **Push Notification Tokens:** Firebase Cloud Messaging (FCM) tokens to deliver real-time educational market signals and system alerts.
 
-**AI Chatbot Data:**
-• Chat messages sent to our AI assistant
-• Conversation history (stored to improve response quality)
-• Usage patterns and interaction data
+**D. AI Assistant & Communication Data:**
+• **AI Chatbot Inquiries:** User prompts and messages sent to our KTS Bot assistant (processed securely to generate real-time educational responses).
+• **Customer Support:** Inquiries, support ticket messages, and feedback submitted to our helpdesk.
 
-**We do NOT collect:**
-• Financial account passwords
-• Bank or payment card details
-• Biometric data
-• Precise GPS location`,
+**E. Information We Explicitly DO NOT Collect:**
+• Financial account passwords or banking login credentials.
+• Credit/debit card numbers or payment card CVVs.
+• Biometric data (fingerprints, facial scans).
+• Precise real-time GPS location tracking.`,
   },
   {
     id: 'how-we-use',
     title: '2. How We Use Your Information',
-    content: `We use the collected information for the following purposes:
+    content: `We process your data transparently and solely for legitimate service purposes:
 
-**Service Delivery:**
-• To provide AI-powered trading signals and market analysis
-• To operate the automated trading bot on your behalf
-• To deliver educational courses and trading content
-• To send real-time notifications about signals, trades, and alerts
-
-**Account Management:**
-• To create and manage your user account
-• To verify your identity and prevent fraud
-• To provide customer support
-
-**Improvement & Analytics:**
-• To analyze app usage and improve features
-• To personalize your experience and recommendations
-• To conduct research and analytics (aggregated, anonymized data)
-
-**Communication:**
-• To send important account and service updates
-• To respond to your support requests
-• To send marketing communications (only with your consent)
-
-**Legal Compliance:**
-• To comply with applicable laws and regulations
-• To enforce our terms of service
-• To protect the rights and safety of our users`,
+• **Educational & Signal Services:** Delivering daily educational trading signals, technical market breakdowns, and live chart insights.
+• **Trading Bot Analytics:** Monitoring MT5 automated bot configurations, equity curves, and performance statistics.
+• **Trading Academy Access:** Providing structured video lessons, SMC modules, price action courses, and progress tracking.
+• **Account Administration:** Authenticating logins, managing profile preferences, preventing duplicate accounts, and securing user accounts.
+• **Real-time Notifications:** Broadcasting critical signal updates, market news, lesson additions, and support ticket replies.
+• **AI Assistant Processing:** Enabling interactive AI chat interactions and contextual educational assistance.
+• **Security & Abuse Prevention:** Detecting fraudulent activities, unauthorized access, API abuse, and terms of service violations.
+• **Legal & Regulatory Compliance:** Adhering to applicable digital privacy and consumer protection laws.`,
   },
   {
     id: 'data-sharing',
-    title: '3. Data Sharing & Third Parties',
-    content: `We may share your information with the following third parties:
+    title: '3. Data Sharing & Third-Party Service Providers',
+    content: `We prioritize user privacy and adhere to strict data-sharing standards:
 
-**Service Providers:**
-• Google (Firebase) — for push notifications and analytics
-• Groq AI — for powering the AI chatbot (chat messages only)
-• Exness/MT5 brokers — for trading bot execution (account details only)
-• Railway (hosting) — for secure backend infrastructure
+**A. Third-Party Service Providers:**
+We engage reputable third-party infrastructure providers to support our operations under strict confidentiality and security agreements:
+• **Google Firebase:** For push notification delivery (FCM), crash reporting, and Google OAuth sign-in authentication.
+• **Groq AI:** For high-speed API processing of AI chatbot prompts and educational inquiries (transferred securely, not used for external AI training).
+• **Railway & Cloud Infrastructure:** For enterprise-grade encrypted backend hosting, database management, and API servers.
 
-**We do NOT sell your personal data to any third parties.**
+**B. Strict No-Sale Policy:**
+**We NEVER sell, rent, monetize, or trade your personal data to third-party advertisers, data brokers, or marketing networks.**
 
-**Legal Requirements:**
-We may disclose your information if required by law, court order, or governmental regulation, or if we believe disclosure is necessary to protect our rights, your safety, or the safety of others.
-
-**Business Transfers:**
-In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction. We will notify you of any such change.`,
+**C. Legal & Safety Disclosures:**
+We may disclose information only if required by a valid subpoena, court order, or applicable legal process, or when necessary to protect the vital security and property rights of KTS Markets and its users.`,
   },
   {
     id: 'data-security',
-    title: '4. Data Security',
-    content: `We take the security of your data seriously and implement industry-standard measures:
+    title: '4. Data Security & Storage',
+    content: `We implement robust technical and organizational safeguards to protect your personal data:
 
-• **Encryption:** All data is transmitted using TLS/SSL encryption (HTTPS)
-• **Authentication:** Secure token-based authentication (Sanctum)
-• **Password Hashing:** Passwords are bcrypt-hashed and never stored in plain text
-• **API Keys:** Encrypted at rest using AES-256 encryption
-• **Access Control:** Role-based access control (RBAC) with principle of least privilege
-• **Database:** PostgreSQL with encrypted storage on Railway
-• **Regular Backups:** Automated database backups
-• **Monitoring:** Activity logging and anomaly detection
+• **Transmission Encryption:** All data transmitted between the mobile app, website, and backend servers is encrypted using industry-standard Transport Layer Security (TLS 1.3 / HTTPS).
+• **Data at Rest Encryption:** Sensitive records, database backups, and server disks are protected with AES-256 encryption.
+• **Authentication Security:** Secure token-based authentication (Laravel Sanctum) with cryptographic signature validation.
+• **Password Hashing:** Passwords are irreversibly hashed using standard Bcrypt algorithms; plain-text passwords are never stored or accessible.
+• **Role-Based Access Control (RBAC):** Strict internal administrative controls ensuring only authorized staff can access user data on a need-to-know basis.
+• **Continuous Monitoring:** Server activity logging, automated anomaly detection, and regular vulnerability scanning.`,
+  },
+  {
+    id: 'account-deletion',
+    title: '5. Account and Data Deletion Policy (Google Play Compliant)',
+    content: `In full compliance with Google Play's User Data and Account Deletion policies, KTS Markets provides seamless, transparent mechanisms for users to permanently delete their account and associated data:
 
-While we strive to protect your information, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security.`,
+**A. In-App Deletion (Instant):**
+You can permanently delete your account directly inside the KTS Markets mobile app at any time:
+1. Open the **KTS Markets App**.
+2. Navigate to **Profile** (bottom navigation bar).
+3. Tap on **Edit Profile** or **Settings**.
+4. Tap **"Delete Account"** and confirm your password or security verification.
+5. Your account, authentication tokens, and profile data are immediately terminated.
+
+**B. Web-Based Deletion Request (Without Reinstalling the App):**
+Users who have uninstalled the app or prefer to request deletion via the web can submit an account deletion request online:
+• **Direct Deletion URL:** https://kts-backend-production.up.railway.app/delete-account
+• **Email Request:** Send an email from your registered email address to **privacy@ktsmarkets.com** or **support@ktsmarkets.com** with the subject line *"Account Deletion Request"*.
+
+**C. Data Purge Details & Retention Timeline:**
+• **What is permanently deleted:** Your profile name, email address, phone number, avatar, authentication credentials, MT5 configuration IDs, push notification tokens, support messages, and chat history.
+• **Timeline:** Personal data is purged immediately upon in-app request, and any residual system backups are completely expunged within 30 days.
+• **Exceptions:** We retain only anonymized aggregate statistical records or records legally mandated for financial audit and compliance.`,
   },
   {
     id: 'data-retention',
-    title: '5. Data Retention',
-    content: `We retain your information for as long as your account is active or as needed to provide services:
+    title: '6. Data Retention Schedule',
+    content: `We retain personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy:
 
-• **Account Data:** Retained until you delete your account
-• **Trading History:** Retained for 2 years for analysis and compliance
-• **Chat Logs:** AI chatbot conversations retained for 90 days to improve quality
-• **Support Tickets:** Retained until resolved, then archived for 1 year
-• **Analytics Data:** Anonymized and retained indefinitely
-• **Push Notification Tokens:** Removed when you uninstall the app
-
-When you delete your account, we permanently remove your personal data within 30 days, except where required by law.`,
+• **Active Account Information:** Retained for the lifetime of your active account until you request deletion.
+• **Trading & Signal Logs:** Historical signal performance data is retained in anonymized format for analytical accuracy.
+• **AI Conversation Logs:** Retained for up to 90 days for service quality improvement and spam prevention, after which they are automatically purged.
+• **Support Ticket Archives:** Archived for 12 months following resolution for quality assurance, then permanently deleted.
+• **Push Notification Tokens:** Automatically invalidated and removed upon app uninstallation or token rotation.`,
   },
   {
     id: 'your-rights',
-    title: '6. Your Rights',
-    content: `You have the following rights regarding your personal data:
+    title: '7. Your Privacy Rights (GDPR, CCPA & Global)',
+    content: `Regardless of your location, KTS Markets guarantees comprehensive user privacy rights:
 
-• **Access:** Request a copy of all personal data we hold about you
-• **Correction:** Request correction of inaccurate or incomplete data
-• **Deletion:** Request permanent deletion of your account and data
-• **Portability:** Request your data in a machine-readable format
-• **Opt-Out:** Unsubscribe from marketing communications at any time
-• **Restriction:** Request restriction of processing in certain circumstances
-• **Objection:** Object to processing based on legitimate interests
+• **Right to Access:** Request a copy of all personal data we hold concerning your account.
+• **Right to Rectification:** Update or correct inaccurate or incomplete account details directly via the app profile.
+• **Right to Erasure ("Right to be Forgotten"):** Request the complete and irreversible erasure of your personal data.
+• **Right to Restrict Processing:** Request limitation of data processing under certain regulatory circumstances.
+• **Right to Data Portability:** Obtain your personal data in a structured, commonly used, machine-readable format.
+• **Right to Withdraw Consent:** Revoke permissions (e.g., push notifications or camera access) at any time via your device settings.
 
-To exercise any of these rights, contact us at: **privacy@ktsmarkets.com**
-
-We will respond to your request within 30 days.`,
+To exercise any of these privacy rights, please contact our Data Protection team at **privacy@ktsmarkets.com**. We respond to verified requests within 30 days without charge.`,
   },
   {
     id: 'children-privacy',
-    title: '7. Children\'s Privacy',
-    content: `KTS Markets is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information promptly.
+    title: '8. Age Limitations & Children\'s Privacy (18+ Policy)',
+    content: `**Strict 18+ Policy:**
+KTS Markets is exclusively intended and designed for individuals who are at least **18 years of age (or the legal age of majority in your jurisdiction)**. 
 
-If you are a parent or guardian and believe your child has provided us with personal information, please contact us at **privacy@ktsmarkets.com**.
-
-Users under 18 should use the app only with the involvement and consent of a parent or legal guardian.`,
+• We do not knowingly market to, solicit, or collect personal information from individuals under the age of 18.
+• If we discover or are notified that an individual under the age of 18 has registered an account or submitted personal information, we will immediately deactivate the account and permanently delete all associated data from our servers.
+• If you are a parent or guardian and believe your child under 18 has accessed the app, please notify us immediately at **privacy@ktsmarkets.com**.`,
   },
   {
     id: 'trading-disclaimer',
-    title: '8. Trading Risk Disclaimer',
-    content: `**Important:** Trading Forex, CFDs, cryptocurrencies, and other financial instruments carries significant risk and may not be suitable for all investors.
+    title: '9. Financial Services & Trading Risk Disclaimer',
+    content: `**Important Regulatory & Risk Notice:**
 
-• Past performance is not indicative of future results
-• Trading involves substantial risk of loss
-• You should never trade with money you cannot afford to lose
-• KTS Markets provides AI-generated analysis for informational purposes only
-• Our AI signals and bot trades are NOT financial advice
-• Automated trading carries additional risks including system failures
-• You are solely responsible for your trading decisions
-
-KTS Markets, its employees, and affiliates are NOT responsible for any losses incurred through use of the app, AI signals, or trading bot.
-
-**Regulatory Note:** KTS Markets is an educational and analysis platform. We do not manage client funds or provide managed account services.`,
+• **Educational & Informational Purpose Only:** KTS Markets is an educational technology and market analytics platform. All materials, trading signals, course videos, charting patterns, bot analytics, and AI assistant insights are provided strictly for educational, informational, and research purposes.
+• **No Financial Advice:** None of the content provided in the App or on the Website constitutes financial, investment, trading, tax, or legal advice. We do not provide personalized investment recommendations.
+• **Substantial Risk Warning:** Trading foreign exchange (Forex), contracts for difference (CFDs), commodities, and cryptocurrencies involves significant financial risk. Market prices are volatile, and you may lose some or all of your invested capital. Never trade with capital you cannot afford to lose.
+• **No Guarantees:** Past signal performance, win rates, or historical bot metrics do not guarantee future results. Automated trading configurations and risk parameters are user-configured tools, not guarantees of profit.
+• **Non-Broker Entity:** KTS Markets is NOT a registered financial broker-dealer, investment advisor, or asset manager. We do not accept cash deposits, hold investor funds, or execute financial transactions directly.`,
   },
   {
     id: 'educational-content',
-    title: '9. Educational Content',
-    content: `KTS Markets provides free educational content including:
+    title: '10. Free Educational Content & Academy',
+    content: `KTS Markets provides accessible, high-quality trading education:
 
-• **Trading Courses:** Complete courses covering beginner to advanced topics
-• **Smart Money Concepts (SMC):** Institutional trading strategies
-• **Price Action:** Candlestick patterns and chart analysis
-• **Risk Management:** Position sizing and capital preservation
-• **Technical Analysis:** Indicators, support/resistance, and trend analysis
-• **Market Psychology:** Emotional discipline and mindset training
-
-**All educational content is provided FREE of charge.** There are no paid courses or premium educational tiers. Content is regularly updated to reflect current market conditions and best practices.
-
-Educational content is for informational purposes only and does not constitute financial advice. Always do your own research before making trading decisions.`,
-  },
-  {
-    id: 'ai-chatbot',
-    title: '10. AI Chatbot',
-    content: `KTS Markets includes an AI-powered chatbot assistant ("KTS Bot") powered by Groq AI:
-
-• The AI provides market analysis, trading insights, and educational information
-• Chat messages are processed by Groq AI's API for generating responses
-• Conversation history is stored to maintain context across sessions
-• The AI may use tool functions to check your account status, send emails, or create support tickets
-• AI-generated content is for informational purposes only and should not be considered financial advice
-
-**Abuse Prevention:**
-• We monitor for abusive or inappropriate messages
-• Repeated abuse may result in temporary suspension of chatbot access
-• All conversations are logged for quality and safety purposes`,
+• **Comprehensive Trading Curriculum:** Beginner to advanced video lessons covering market mechanics, risk management, Smart Money Concepts (SMC), and candlestick price action.
+• **100% Free Access:** Core educational courses, lessons, and learning materials within the KTS Academy are provided free of charge to promote financial literacy.
+• **Self-Paced Learning:** Users can track module completion and revise educational concepts independently.`,
   },
   {
     id: 'push-notifications',
-    title: '11. Push Notifications',
-    content: `KTS Markets uses push notifications to deliver:
+    title: '11. Push Notifications & Communication Preferences',
+    content: `KTS Markets uses push notifications delivered via Google Firebase Cloud Messaging (FCM) to provide timely updates:
 
-• New trading signals and market alerts
-• Trading bot status updates (open/closed positions)
-• Support ticket responses
-• Important account and security notifications
-• Educational content updates
+• Real-time educational market signals and technical trade alerts.
+• Educational course releases and academy updates.
+• Customer support chat and ticket replies.
+• Account security notices and system announcements.
 
-You can manage notification preferences in the app settings. Disabling notifications may cause you to miss important trading signals and alerts.
-
-Push notification tokens are stored securely and are only used for delivering notifications. You can revoke notification access by disabling them in your device settings.`,
+**Managing Notification Preferences:**
+You can modify or disable push notification channels at any time inside the app settings (**Profile > Notification Settings**) or via your Android/iOS operating system device settings.`,
   },
   {
     id: 'changes',
-    title: '12. Changes to This Policy',
-    content: `We may update this Privacy Policy from time to time. We will notify you of any material changes by:
+    title: '12. Updates to This Privacy Policy',
+    content: `We may revise this Privacy Policy periodically to reflect updates to our services, technological advancements, or regulatory requirements.
 
-• Posting the new Privacy Policy on this page
-• Updating the "Last Updated" date at the top
-• Sending an in-app notification for significant changes
-
-We encourage you to review this Privacy Policy periodically. Continued use of the app after changes constitutes acceptance of the updated policy.`,
+When updates occur:
+• The **"Last Updated"** date at the top of this policy will be revised.
+• Significant changes will be highlighted via in-app banner notifications or email alerts prior to taking effect.
+• Your continued use of the KTS Markets application or website following the posting of updated terms signifies your agreement to the revised policy.`,
   },
   {
     id: 'contact',
-    title: '13. Contact Us',
-    content: `If you have any questions about this Privacy Policy or our data practices, please contact us:
+    title: '13. Contact Information & Data Protection Officer',
+    content: `If you have questions, inquiries, or requests regarding this Privacy Policy or our data handling practices, please contact our dedicated Privacy & Compliance Team:
 
-**Email:** privacy@ktsmarkets.com
-**WhatsApp:** +92 337 1244640
-**Website:** https://ktsmarkets.com
+• **Email:** privacy@ktsmarkets.com
+• **Customer Support:** support@ktsmarkets.com
+• **Official Website:** https://ktsmarkets.com
+• **Direct Account Deletion URL:** https://kts-backend-production.up.railway.app/delete-account
+• **WhatsApp Support:** +92 337 1244640
 
-**Data Protection Officer:**
-KTS Markets Privacy Team
-Email: dpo@ktsmarkets.com
-
-We aim to respond to all inquiries within 30 business days.`,
+**Data Protection Officer (DPO):**
+KTS Markets Privacy & Regulatory Compliance Team
+Inquiries are addressed within 30 business days.`,
   },
 ];
 
@@ -267,7 +225,7 @@ function AccordionSection({ section, isOpen, onToggle }) {
 }
 
 export default function PrivacyPolicy() {
-  const [openSections, setOpenSections] = useState(['information-collected']);
+  const [openSections, setOpenSections] = useState(sections.map(s => s.id));
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleSection = (id) => {
