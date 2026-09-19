@@ -1,40 +1,63 @@
-import { Shield, ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { 
+  Shield, 
+  Lock, 
+  Trash2, 
+  GraduationCap, 
+  Search, 
+  ExternalLink, 
+  Mail, 
+  Phone, 
+  CheckCircle2, 
+  AlertTriangle, 
+  FileText, 
+  Server, 
+  UserCheck, 
+  Globe, 
+  ArrowRight,
+  Menu,
+  X,
+  ChevronRight
+} from 'lucide-react';
 import Logo from '../components/Logo';
 
 const sections = [
   {
     id: 'information-collected',
+    icon: FileText,
+    badge: 'Data Collection',
     title: '1. Information We Collect',
     content: `When you use the KTS Markets mobile application ("App") and website (collectively, the "Services"), we collect information necessary to deliver our educational and trading analytics features.
 
 **A. Personal Information You Provide:**
-• **Account Registration:** Name, email address, password (bcrypt-hashed), and profile avatar.
-• **Contact Details:** Phone number or WhatsApp number (optional, for customer support and account verification).
-• **Security Credentials:** Account recovery security codes.
+• **Account Registration:** Full name, email address, encrypted authentication credentials, and optional profile avatar.
+• **Contact Details:** WhatsApp or phone number (optional, for customer support and security verification).
+• **Security Credentials:** Secure recovery codes for two-factor and password resets.
 
-**B. Trading & Analytics Information:**
-• **Broker & Terminal Integration:** MT5 account identifier, broker server name, and trader read-only configurations (used solely for bot tracking, analytics, and performance dashboard display).
+**B. Trading & Analytics Configuration:**
+• **Terminal Integration:** MT5 account identifier, broker server name, and trader read-only configurations (used solely for bot telemetry, analytics, and performance dashboard display).
 • **Demo Requests:** Demo account preferences and trading experience level.
 
-**C. Automatically Collected Device & Technical Data:**
-• **Device Information:** Device model, manufacturer, operating system version, and unique device identifiers.
-• **App Performance & Telemetry:** App version, crash diagnostics, feature usage statistics, and interaction telemetry.
-• **Network Data:** IP address, internet service provider, and approximate geographic location (country/city level).
-• **Push Notification Tokens:** Firebase Cloud Messaging (FCM) tokens to deliver real-time educational market signals and system alerts.
+**C. Automatically Collected Technical & Device Data:**
+• **Device Telemetry:** Device model, manufacturer, Android OS version, and app release version.
+• **Push Notification Tokens:** Firebase Cloud Messaging (FCM) device tokens to deliver real-time educational market signals and system alerts.
+• **Network Data:** IP address, internet provider, and approximate geographic location (country/city level).
+• **Crash Reports:** Anonymous error logs and performance statistics.
 
 **D. AI Assistant & Communication Data:**
-• **AI Chatbot Inquiries:** User prompts and messages sent to our KTS Bot assistant (processed securely to generate real-time educational responses).
+• **AI Chatbot Inquiries:** User prompts and messages sent to our KTS Bot assistant (processed securely via Groq AI to generate real-time educational responses).
 • **Customer Support:** Inquiries, support ticket messages, and feedback submitted to our helpdesk.
 
-**E. Information We Explicitly DO NOT Collect:**
+**E. What We Explicitly DO NOT Collect:**
 • Financial account passwords or banking login credentials.
 • Credit/debit card numbers or payment card CVVs.
-• Biometric data (fingerprints, facial scans).
+• Biometric data (fingerprints, facial recognition data).
 • Precise real-time GPS location tracking.`,
   },
   {
     id: 'how-we-use',
+    icon: Server,
+    badge: 'Processing',
     title: '2. How We Use Your Information',
     content: `We process your data transparently and solely for legitimate service purposes:
 
@@ -49,6 +72,8 @@ const sections = [
   },
   {
     id: 'data-sharing',
+    icon: Globe,
+    badge: 'Third Parties',
     title: '3. Data Sharing & Third-Party Service Providers',
     content: `We prioritize user privacy and adhere to strict data-sharing standards:
 
@@ -66,6 +91,8 @@ We may disclose information only if required by a valid subpoena, court order, o
   },
   {
     id: 'data-security',
+    icon: Lock,
+    badge: 'Security',
     title: '4. Data Security & Storage',
     content: `We implement robust technical and organizational safeguards to protect your personal data:
 
@@ -78,7 +105,9 @@ We may disclose information only if required by a valid subpoena, court order, o
   },
   {
     id: 'account-deletion',
-    title: '5. Account and Data Deletion Policy (Google Play Compliant)',
+    icon: Trash2,
+    badge: 'Google Play Mandate',
+    title: '5. Account and Data Deletion Policy',
     content: `In full compliance with Google Play's User Data and Account Deletion policies, KTS Markets provides seamless, transparent mechanisms for users to permanently delete their account and associated data:
 
 **A. In-App Deletion (Instant):**
@@ -91,7 +120,7 @@ You can permanently delete your account directly inside the KTS Markets mobile a
 
 **B. Web-Based Deletion Request (Without Reinstalling the App):**
 Users who have uninstalled the app or prefer to request deletion via the web can submit an account deletion request online:
-• **Direct Deletion URL:** https://kts-backend-production.up.railway.app/delete-account
+• **Direct Deletion Portal:** https://kts-backend-production.up.railway.app/delete-account
 • **Email Request:** Send an email from your registered email address to **privacy@ktsmarkets.com** or **support@ktsmarkets.com** with the subject line *"Account Deletion Request"*.
 
 **C. Data Purge Details & Retention Timeline:**
@@ -101,6 +130,8 @@ Users who have uninstalled the app or prefer to request deletion via the web can
   },
   {
     id: 'data-retention',
+    icon: Server,
+    badge: 'Retention',
     title: '6. Data Retention Schedule',
     content: `We retain personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy:
 
@@ -112,6 +143,8 @@ Users who have uninstalled the app or prefer to request deletion via the web can
   },
   {
     id: 'your-rights',
+    icon: UserCheck,
+    badge: 'User Rights',
     title: '7. Your Privacy Rights (GDPR, CCPA & Global)',
     content: `Regardless of your location, KTS Markets guarantees comprehensive user privacy rights:
 
@@ -126,6 +159,8 @@ To exercise any of these privacy rights, please contact our Data Protection team
   },
   {
     id: 'children-privacy',
+    icon: AlertTriangle,
+    badge: '18+ Restriction',
     title: '8. Age Limitations & Children\'s Privacy (18+ Policy)',
     content: `**Strict 18+ Policy:**
 KTS Markets is exclusively intended and designed for individuals who are at least **18 years of age (or the legal age of majority in your jurisdiction)**. 
@@ -136,6 +171,8 @@ KTS Markets is exclusively intended and designed for individuals who are at leas
   },
   {
     id: 'trading-disclaimer',
+    icon: Shield,
+    badge: 'Financial Notice',
     title: '9. Financial Services & Trading Risk Disclaimer',
     content: `**Important Regulatory & Risk Notice:**
 
@@ -147,6 +184,8 @@ KTS Markets is exclusively intended and designed for individuals who are at leas
   },
   {
     id: 'educational-content',
+    icon: GraduationCap,
+    badge: 'Academy',
     title: '10. Free Educational Content & Academy',
     content: `KTS Markets provides accessible, high-quality trading education:
 
@@ -156,7 +195,9 @@ KTS Markets is exclusively intended and designed for individuals who are at leas
   },
   {
     id: 'push-notifications',
-    title: '11. Push Notifications & Communication Preferences',
+    icon: Globe,
+    badge: 'Notifications',
+    title: '11. Push Notifications & Preferences',
     content: `KTS Markets uses push notifications delivered via Google Firebase Cloud Messaging (FCM) to provide timely updates:
 
 • Real-time educational market signals and technical trade alerts.
@@ -169,6 +210,8 @@ You can modify or disable push notification channels at any time inside the app 
   },
   {
     id: 'changes',
+    icon: FileText,
+    badge: 'Policy Updates',
     title: '12. Updates to This Privacy Policy',
     content: `We may revise this Privacy Policy periodically to reflect updates to our services, technological advancements, or regulatory requirements.
 
@@ -179,6 +222,8 @@ When updates occur:
   },
   {
     id: 'contact',
+    icon: Mail,
+    badge: 'Contact & DPO',
     title: '13. Contact Information & Data Protection Officer',
     content: `If you have questions, inquiries, or requests regarding this Privacy Policy or our data handling practices, please contact our dedicated Privacy & Compliance Team:
 
@@ -194,223 +239,555 @@ Inquiries are addressed within 30 business days.`,
   },
 ];
 
-function AccordionSection({ section, isOpen, onToggle }) {
+function FormattedContent({ text }) {
+  const lines = text.split('\n');
+
   return (
-    <div style={{
-      borderBottom: '1px solid #1E1E1E',
-    }}>
-      <button onClick={onToggle} style={{
-        width: '100%', background: 'none', border: 'none',
-        padding: '20px 0', display: 'flex', alignItems: 'center',
-        justifyContent: 'space-between', cursor: 'pointer',
-        color: isOpen ? '#D4A843' : '#CCC',
-        transition: 'color 0.2s',
-      }}>
-        <span style={{
-          fontFamily: "'Space Grotesk', sans-serif", fontSize: 16,
-          fontWeight: 600, textAlign: 'left',
-        }}>{section.title}</span>
-        {isOpen ? <ChevronUp size={18} color="#D4A843" /> : <ChevronDown size={18} color="#666" />}
-      </button>
-      {isOpen && (
-        <div style={{
-          paddingBottom: 20, fontSize: 14, color: '#999',
-          lineHeight: 1.8, whiteSpace: 'pre-line',
-        }}>
-          {section.content}
-        </div>
-      )}
+    <div style={{ color: '#A0AEC0', fontSize: '14px', lineHeight: '1.8' }}>
+      {lines.map((line, idx) => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          return <div key={idx} style={{ height: '10px' }} />;
+        }
+
+        // Section Headings like **A. Personal Information You Provide:**
+        if (trimmed.startsWith('**') && trimmed.endsWith('**')) {
+          const heading = trimmed.replace(/\*\*/g, '');
+          return (
+            <h4 key={idx} style={{ 
+              color: '#F0D78C', 
+              fontSize: '15px', 
+              fontWeight: 700, 
+              marginTop: '16px', 
+              marginBottom: '8px',
+              fontFamily: "'Space Grotesk', sans-serif"
+            }}>
+              {heading}
+            </h4>
+          );
+        }
+
+        // Bullet Points
+        if (trimmed.startsWith('•')) {
+          const bulletContent = trimmed.substring(1).trim();
+          // Check if bullet has bold prefix
+          const boldMatch = bulletContent.match(/^\*\*(.*?)\*\*(.*)/);
+
+          return (
+            <div key={idx} style={{ 
+              display: 'flex', 
+              alignItems: 'flex-start', 
+              gap: '10px', 
+              marginBottom: '6px',
+              paddingLeft: '4px'
+            }}>
+              <span style={{ color: '#D4A843', fontSize: '14px', marginTop: '2px' }}>•</span>
+              <div>
+                {boldMatch ? (
+                  <>
+                    <strong style={{ color: '#FFFFFF', fontWeight: 600 }}>{boldMatch[1]}</strong>
+                    <span>{boldMatch[2]}</span>
+                  </>
+                ) : (
+                  <span>{bulletContent}</span>
+                )}
+              </div>
+            </div>
+          );
+        }
+
+        // Standard Paragraph / Numbers
+        return (
+          <p key={idx} style={{ marginBottom: '8px' }}>
+            {line}
+          </p>
+        );
+      })}
     </div>
   );
 }
 
 export default function PrivacyPolicy() {
-  const [openSections, setOpenSections] = useState(sections.map(s => s.id));
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeSection, setActiveSection] = useState('information-collected');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const toggleSection = (id) => {
-    setOpenSections(prev =>
-      prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]
+  const filteredSections = useMemo(() => {
+    if (!searchQuery.trim()) return sections;
+    const q = searchQuery.toLowerCase();
+    return sections.filter(
+      s => s.title.toLowerCase().includes(q) || s.content.toLowerCase().includes(q) || s.badge.toLowerCase().includes(q)
     );
-  };
+  }, [searchQuery]);
 
-  const expandAll = () => {
-    setOpenSections(sections.map(s => s.id));
+  const scrollToSection = (id) => {
+    setActiveSection(id);
+    const el = document.getElementById(id);
+    if (el) {
+      const yOffset = -90;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0A0A0A' }}>
-      {/* Navbar */}
+    <div style={{ minHeight: '100vh', background: '#07090C', color: '#E2E8F0', fontFamily: "Inter, -apple-system, sans-serif" }}>
+      {/* Top Ambient Glow */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '1000px',
+        height: '400px',
+        background: 'radial-gradient(circle, rgba(212,168,67,0.07) 0%, rgba(7,9,12,0) 70%)',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
+
+      {/* Navigation Header */}
       <nav style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        background: 'rgba(10,10,10,0.95)', backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid #1E1E1E', padding: '0 16px',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        background: 'rgba(7,9,12,0.85)',
+        backdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        padding: '0 20px',
       }}>
         <div style={{
-          maxWidth: 1200, margin: '0 auto', display: 'flex',
-          alignItems: 'center', justifyContent: 'space-between', height: 64,
+          maxWidth: 1300,
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: 70,
         }}>
-          <a href="/" style={{ textDecoration: 'none' }}>
-            <Logo size={32} />
+          <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Logo size={34} />
           </a>
 
-          {/* Desktop Links */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }} className="privacy-nav-links">
-            <a href="/" style={{
-              color: '#999', textDecoration: 'none', fontSize: 14,
-              fontWeight: 500, transition: 'color 0.2s',
-            }}
-            onMouseEnter={e => e.target.style.color = '#D4A843'}
-            onMouseLeave={e => e.target.style.color = '#999'}
-            >Home</a>
-            <a href="/#features" style={{
-              color: '#999', textDecoration: 'none', fontSize: 14,
-              fontWeight: 500, transition: 'color 0.2s',
-            }}
-            onMouseEnter={e => e.target.style.color = '#D4A843'}
-            onMouseLeave={e => e.target.style.color = '#999'}
-            >Features</a>
+          {/* Desktop Navigation Links */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 24 }} className="privacy-nav-links">
+            <a href="/" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: 14, fontWeight: 500, transition: 'color 0.2s' }}>
+              Home
+            </a>
+            <a href="/#features" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: 14, fontWeight: 500, transition: 'color 0.2s' }}>
+              Features
+            </a>
+            <a href="https://kts-backend-production.up.railway.app/delete-account" target="_blank" rel="noreferrer" style={{ 
+              color: '#EF4444', 
+              textDecoration: 'none', 
+              fontSize: 13, 
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              background: 'rgba(239,68,68,0.1)',
+              padding: '6px 14px',
+              borderRadius: '8px',
+              border: '1px solid rgba(239,68,68,0.2)'
+            }}>
+              <Trash2 size={14} /> Delete Account Request
+            </a>
             <a href="https://play.google.com/store/apps/details?id=com.ktsmarkets" target="_blank" rel="noreferrer" style={{
               background: 'linear-gradient(135deg, #D4A843, #B8922E)',
-              color: '#0A0A0A', padding: '8px 20px', borderRadius: 8,
-              fontSize: 13, fontWeight: 700, textDecoration: 'none',
-            }}>Download App</a>
+              color: '#07090C',
+              padding: '9px 20px',
+              borderRadius: 10,
+              fontSize: 13,
+              fontWeight: 700,
+              textDecoration: 'none',
+              boxShadow: '0 4px 15px rgba(212,168,67,0.25)',
+              transition: 'transform 0.2s',
+            }}>
+              Download App
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{
-            display: 'none', background: 'none', border: 'none',
-            color: '#D4A843', cursor: 'pointer', padding: 4,
-          }} className="privacy-mobile-btn">
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          {/* Mobile Menu Toggle */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+            style={{ display: 'none', background: 'none', border: 'none', color: '#D4A843', cursor: 'pointer', padding: 6 }} 
+            className="privacy-mobile-btn"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Dropdown */}
         {mobileMenuOpen && (
           <div style={{
-            position: 'absolute', top: 64, left: 0, right: 0,
-            background: 'rgba(10,10,10,0.98)', borderBottom: '1px solid #1E1E1E',
-            padding: '16px', display: 'flex', flexDirection: 'column', gap: 14,
+            position: 'absolute', top: 70, left: 0, right: 0,
+            background: 'rgba(7,9,12,0.98)', borderBottom: '1px solid rgba(255,255,255,0.08)',
+            padding: '20px', display: 'flex', flexDirection: 'column', gap: 16,
           }}>
-            <a href="/" onClick={() => setMobileMenuOpen(false)} style={{
-              color: '#CCC', textDecoration: 'none', fontSize: 15, fontWeight: 500,
-            }}>Home</a>
-            <a href="/#features" onClick={() => setMobileMenuOpen(false)} style={{
-              color: '#CCC', textDecoration: 'none', fontSize: 15, fontWeight: 500,
-            }}>Features</a>
+            <a href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#E2E8F0', textDecoration: 'none', fontSize: 16 }}>Home</a>
+            <a href="/#features" onClick={() => setMobileMenuOpen(false)} style={{ color: '#E2E8F0', textDecoration: 'none', fontSize: 16 }}>Features</a>
+            <a href="https://kts-backend-production.up.railway.app/delete-account" target="_blank" rel="noreferrer" style={{ color: '#EF4444', textDecoration: 'none', fontSize: 15, fontWeight: 600 }}>Delete Account Request</a>
             <a href="https://play.google.com/store/apps/details?id=com.ktsmarkets" target="_blank" rel="noreferrer" style={{
               background: 'linear-gradient(135deg, #D4A843, #B8922E)',
-              color: '#0A0A0A', padding: '10px 20px', borderRadius: 8,
-              fontSize: 13, fontWeight: 700, textDecoration: 'none', textAlign: 'center',
+              color: '#07090C', padding: '12px 20px', borderRadius: 10,
+              fontSize: 14, fontWeight: 700, textDecoration: 'none', textAlign: 'center',
             }}>Download App</a>
           </div>
         )}
       </nav>
 
-      {/* Content */}
-      <div style={{
-        maxWidth: 800, margin: '0 auto', padding: '90px 16px 50px',
+      {/* Hero Header */}
+      <header style={{
+        position: 'relative',
+        zIndex: 1,
+        paddingTop: '130px',
+        paddingBottom: '40px',
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        background: 'linear-gradient(180deg, rgba(212,168,67,0.04) 0%, rgba(7,9,12,0) 100%)',
       }}>
-        {/* Title */}
-        <div style={{ textAlign: 'center', marginBottom: 36 }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 20px', textAlign: 'center' }}>
+          {/* Badge */}
           <div style={{
-            width: 64, height: 64, borderRadius: 16,
-            background: 'rgba(212,168,67,0.1)', border: '1px solid rgba(212,168,67,0.2)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            margin: '0 auto 20px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            background: 'rgba(212,168,67,0.1)',
+            border: '1px solid rgba(212,168,67,0.25)',
+            padding: '6px 16px',
+            borderRadius: '100px',
+            marginBottom: '20px',
           }}>
-            <Shield size={28} color="#D4A843" />
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+            <span style={{ color: '#F0D78C', fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px' }}>
+              OFFICIAL GOOGLE PLAY STORE COMPLIANT DOCUMENTATION
+            </span>
           </div>
+
           <h1 style={{
-            fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(28px, 5vw, 42px)',
-            fontWeight: 800, marginBottom: 12,
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontSize: 'clamp(32px, 5vw, 50px)',
+            fontWeight: 800,
+            letterSpacing: '-1px',
+            marginBottom: '14px',
+            color: '#FFFFFF',
           }}>
-            Privacy{' '}
+            Privacy & Data Safety{' '}
             <span style={{
-              background: 'linear-gradient(135deg, #D4A843, #F0D78C)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+              background: 'linear-gradient(135deg, #D4A843, #FDE68A)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
             }}>Policy</span>
           </h1>
-          <p style={{ color: '#666', fontSize: 14, marginBottom: 8 }}>
-            KTS Markets Mobile Application
-          </p>
-          <p style={{ color: '#444', fontSize: 12 }}>
-            Last Updated: September 16, 2026
-          </p>
-        </div>
 
-        {/* Summary Card */}
-        <div style={{
-          background: '#141414', border: '1px solid #1E1E1E',
-          borderRadius: 16, padding: 24, marginBottom: 32,
-        }}>
-          <h3 style={{
-            fontFamily: "'Space Grotesk', sans-serif", fontSize: 15,
-            fontWeight: 700, color: '#D4A843', marginBottom: 12,
-          }}>Quick Summary</h3>
-          <div style={{ fontSize: 13, color: '#888', lineHeight: 1.7 }}>
-            <p style={{ marginBottom: 8 }}>
-              <strong style={{ color: '#CCC' }}>What we collect:</strong> Name, email, device info, trading data, and chat messages.
-            </p>
-            <p style={{ marginBottom: 8 }}>
-              <strong style={{ color: '#CCC' }}>How we use it:</strong> To provide trading signals, operate the AI bot, deliver education, and improve our services.
-            </p>
-            <p style={{ marginBottom: 8 }}>
-              <strong style={{ color: '#CCC' }}>We do NOT sell your data</strong> to third parties.
-            </p>
-            <p>
-              <strong style={{ color: '#CCC' }}>All courses are FREE.</strong> There are no paid educational tiers.
-            </p>
+          <p style={{ maxWidth: 700, margin: '0 auto 24px', color: '#94A3B8', fontSize: '15px', lineHeight: 1.6 }}>
+            Comprehensive disclosure regarding data collection, user rights, strict encryption standards, and instant account deletion mechanisms for the <strong>KTS Markets</strong> mobile application (<code style={{ color: '#D4A843', background: 'rgba(212,168,67,0.1)', padding: '2px 6px', borderRadius: '4px' }}>com.ktsmarkets</code>).
+          </p>
+
+          {/* Quick Metrics Cards */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '12px',
+            maxWidth: 950,
+            margin: '0 auto 10px',
+          }}>
+            <div style={{ background: '#0D1117', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '12px', padding: '14px 18px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ background: 'rgba(16,185,129,0.1)', padding: '8px', borderRadius: '10px' }}><Lock size={18} color="#10B981" /></div>
+              <div>
+                <div style={{ color: '#FFFFFF', fontSize: '13px', fontWeight: 700 }}>TLS 1.3 & AES-256</div>
+                <div style={{ color: '#64748B', fontSize: '11px' }}>End-to-End Encryption</div>
+              </div>
+            </div>
+
+            <div style={{ background: '#0D1117', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '12px', padding: '14px 18px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ background: 'rgba(239,68,68,0.1)', padding: '8px', borderRadius: '10px' }}><Shield size={18} color="#EF4444" /></div>
+              <div>
+                <div style={{ color: '#FFFFFF', fontSize: '13px', fontWeight: 700 }}>Zero Data Selling</div>
+                <div style={{ color: '#64748B', fontSize: '11px' }}>No Third-Party Brokers</div>
+              </div>
+            </div>
+
+            <div style={{ background: '#0D1117', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '12px', padding: '14px 18px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ background: 'rgba(59,130,246,0.1)', padding: '8px', borderRadius: '10px' }}><Trash2 size={18} color="#3B82F6" /></div>
+              <div>
+                <div style={{ color: '#FFFFFF', fontSize: '13px', fontWeight: 700 }}>Instant Deletion</div>
+                <div style={{ color: '#64748B', fontSize: '11px' }}>In-App & Web URL</div>
+              </div>
+            </div>
+
+            <div style={{ background: '#0D1117', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '12px', padding: '14px 18px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ background: 'rgba(212,168,67,0.1)', padding: '8px', borderRadius: '10px' }}><GraduationCap size={18} color="#D4A843" /></div>
+              <div>
+                <div style={{ color: '#FFFFFF', fontSize: '13px', fontWeight: 700 }}>100% Free Academy</div>
+                <div style={{ color: '#64748B', fontSize: '11px' }}>Educational Analytics</div>
+              </div>
+            </div>
           </div>
         </div>
+      </header>
 
-        {/* Expand All */}
-        <button onClick={expandAll} style={{
-          background: 'none', border: '1px solid #1E1E1E',
-          color: '#888', padding: '8px 16px', borderRadius: 8,
-          fontSize: 12, cursor: 'pointer', marginBottom: 16,
-          transition: 'all 0.2s',
-        }}
-        onMouseEnter={e => { e.target.style.borderColor = '#D4A84340'; e.target.style.color = '#D4A843'; }}
-        onMouseLeave={e => { e.target.style.borderColor = '#1E1E1E'; e.target.style.color = '#888'; }}
-        >
-          Expand All Sections
-        </button>
+      {/* Main Content Area: Two-Column Layout */}
+      <main style={{ maxWidth: 1250, margin: '0 auto', padding: '40px 20px 80px', position: 'relative', zIndex: 1 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '40px', alignItems: 'start' }} className="privacy-grid">
+          
+          {/* Left Column: Sticky Table of Contents & Quick Actions */}
+          <aside style={{
+            position: 'sticky',
+            top: '90px',
+            background: '#0D1117',
+            border: '1px solid rgba(255,255,255,0.07)',
+            borderRadius: '16px',
+            padding: '20px',
+            maxHeight: 'calc(100vh - 120px)',
+            overflowY: 'auto',
+          }} className="privacy-sidebar">
+            {/* Search Box */}
+            <div style={{ position: 'relative', marginBottom: '18px' }}>
+              <Search size={16} color="#64748B" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+              <input
+                type="text"
+                placeholder="Search privacy topics..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                style={{
+                  width: '100%',
+                  background: '#07090C',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: '10px',
+                  padding: '10px 12px 10px 36px',
+                  color: '#FFFFFF',
+                  fontSize: '13px',
+                  outline: 'none',
+                }}
+              />
+            </div>
 
-        {/* Sections */}
-        <div style={{
-          background: '#141414', border: '1px solid #1E1E1E',
-          borderRadius: 16, padding: '6px 16px',
-        }}>
-          {sections.map(section => (
-            <AccordionSection
-              key={section.id}
-              section={section}
-              isOpen={openSections.includes(section.id)}
-              onToggle={() => toggleSection(section.id)}
-            />
-          ))}
+            <div style={{ fontSize: '11px', fontWeight: 700, color: '#D4A843', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>
+              Table of Contents
+            </div>
+
+            {/* Navigation List */}
+            <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              {filteredSections.map(s => {
+                const IconComponent = s.icon;
+                const isActive = activeSection === s.id;
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => scrollToSection(s.id)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      padding: '8px 12px',
+                      borderRadius: '8px',
+                      background: isActive ? 'rgba(212,168,67,0.12)' : 'transparent',
+                      color: isActive ? '#F0D78C' : '#94A3B8',
+                      border: 'none',
+                      textAlign: 'left',
+                      fontSize: '13px',
+                      fontWeight: isActive ? 600 : 400,
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                    }}
+                    onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = '#FFFFFF'; }}
+                    onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = '#94A3B8'; }}
+                  >
+                    <IconComponent size={15} color={isActive ? '#D4A843' : '#64748B'} />
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {s.title}
+                    </span>
+                  </button>
+                );
+              })}
+            </nav>
+
+            {/* Direct Deletion Card */}
+            <div style={{
+              marginTop: '24px',
+              padding: '16px',
+              background: 'linear-gradient(180deg, rgba(239,68,68,0.08) 0%, rgba(239,68,68,0.02) 100%)',
+              border: '1px solid rgba(239,68,68,0.2)',
+              borderRadius: '12px',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#EF4444', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}>
+                <Trash2 size={14} /> Account Deletion
+              </div>
+              <p style={{ color: '#94A3B8', fontSize: '11px', lineHeight: 1.5, marginBottom: '10px' }}>
+                Request complete erasure of your profile and data online without the app.
+              </p>
+              <a
+                href="https://kts-backend-production.up.railway.app/delete-account"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  background: '#EF4444',
+                  color: '#FFFFFF',
+                  padding: '7px 12px',
+                  borderRadius: '6px',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                }}
+              >
+                Delete Portal <ExternalLink size={12} />
+              </a>
+            </div>
+          </aside>
+
+          {/* Right Column: Full Readable Document Cards */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            
+            {/* Account Deletion Callout Banner (Top Notice) */}
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(212,168,67,0.08) 0%, rgba(239,68,68,0.05) 100%)',
+              border: '1px solid rgba(212,168,67,0.25)',
+              borderRadius: '16px',
+              padding: '20px 24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '16px',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <div style={{ background: '#D4A843', color: '#07090C', padding: '10px', borderRadius: '12px' }}>
+                  <CheckCircle2 size={22} />
+                </div>
+                <div>
+                  <h3 style={{ color: '#FFFFFF', fontSize: '15px', fontWeight: 700, marginBottom: '4px' }}>
+                    Google Play Policy Verified
+                  </h3>
+                  <p style={{ color: '#94A3B8', fontSize: '13px', margin: 0 }}>
+                    Our data safety policies, 18+ age restrictions, and deletion workflows strictly adhere to global regulatory standards.
+                  </p>
+                </div>
+              </div>
+              <a
+                href="https://kts-backend-production.up.railway.app/delete-account"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  color: '#FFFFFF',
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                }}
+              >
+                Web Deletion Form <ArrowRight size={14} />
+              </a>
+            </div>
+
+            {/* Render Every Section */}
+            {filteredSections.map(s => {
+              const IconComp = s.icon;
+              return (
+                <article
+                  key={s.id}
+                  id={s.id}
+                  style={{
+                    background: '#0D1117',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    borderRadius: '16px',
+                    padding: '28px',
+                    transition: 'border-color 0.2s',
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(212,168,67,0.3)'}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px', borderBottom: '1px solid rgba(255,255,255,0.05)', pb: '14px', paddingBottom: '14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{
+                        background: 'rgba(212,168,67,0.1)',
+                        border: '1px solid rgba(212,168,67,0.2)',
+                        padding: '8px',
+                        borderRadius: '10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                        <IconComp size={20} color="#D4A843" />
+                      </div>
+                      <h2 style={{
+                        color: '#FFFFFF',
+                        fontSize: '20px',
+                        fontWeight: 700,
+                        margin: 0,
+                        fontFamily: "'Space Grotesk', sans-serif",
+                      }}>
+                        {s.title}
+                      </h2>
+                    </div>
+                    <span style={{
+                      background: 'rgba(255,255,255,0.04)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      color: '#94A3B8',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      padding: '4px 10px',
+                      borderRadius: '6px',
+                    }}>
+                      {s.badge}
+                    </span>
+                  </div>
+
+                  <FormattedContent text={s.content} />
+                </article>
+              );
+            })}
+
+            {/* Footer Sign-off */}
+            <footer style={{
+              textAlign: 'center',
+              padding: '30px 20px',
+              borderTop: '1px solid rgba(255,255,255,0.06)',
+              marginTop: '20px',
+            }}>
+              <p style={{ color: '#64748B', fontSize: '13px', lineHeight: 1.6, margin: 0 }}>
+                Effective Date: September 16, 2026 • Application: <strong>KTS Markets</strong> (<code style={{ color: '#D4A843' }}>com.ktsmarkets</code>)<br />
+                © 2026 KTS Markets. All intellectual property, software rights, and educational curricula reserved.
+              </p>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '14px' }}>
+                <a href="mailto:privacy@ktsmarkets.com" style={{ color: '#D4A843', fontSize: '12px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Mail size={14} /> privacy@ktsmarkets.com
+                </a>
+                <a href="https://wa.me/923371244640" target="_blank" rel="noreferrer" style={{ color: '#94A3B8', fontSize: '12px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Phone size={14} /> +92 337 1244640
+                </a>
+              </div>
+            </footer>
+          </div>
         </div>
+      </main>
 
-        {/* Footer */}
-        <div style={{
-          textAlign: 'center', marginTop: 40, padding: 24,
-          borderTop: '1px solid #1E1E1E',
-        }}>
-          <p style={{ fontSize: 12, color: '#444', lineHeight: 1.6 }}>
-            This Privacy Policy is effective as of September 16, 2026.
-            <br />
-            © 2026 KTS Markets. All rights reserved.
-          </p>
-          <p style={{ fontSize: 12, color: '#666', marginTop: 12 }}>
-            Questions? Contact us at{' '}
-            <a href="mailto:privacy@ktsmarkets.com" style={{ color: '#D4A843', textDecoration: 'none' }}>
-              privacy@ktsmarkets.com
-            </a>
-          </p>
-        </div>
-      </div>
+      {/* Responsive Styles */}
+      <style>{`
+        @media (max-width: 900px) {
+          .privacy-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .privacy-sidebar {
+            display: none !important;
+          }
+          .privacy-nav-links {
+            display: none !important;
+          }
+          .privacy-mobile-btn {
+            display: block !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
