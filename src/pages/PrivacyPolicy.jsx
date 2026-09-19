@@ -120,8 +120,8 @@ You can permanently delete your account directly inside the KTS Markets mobile a
 
 **B. Web-Based Deletion Request (Without Reinstalling the App):**
 Users who have uninstalled the app or prefer to request deletion via the web can submit an account deletion request online:
-• **Direct Deletion Portal:** https://kts-backend-production.up.railway.app/delete-account
-• **Email Request:** Send an email from your registered email address to **privacy@ktsmarkets.com** or **support@ktsmarkets.com** with the subject line *"Account Deletion Request"*.
+• **Direct Deletion URL:** https://kts-backend-production.up.railway.app/delete-account
+• **Email Request:** Send an email from your registered email address to **ktsfxtraining@gmail.com** with the subject line *"Account Deletion Request"*.
 
 **C. Data Purge Details & Retention Timeline:**
 • **What is permanently deleted:** Your profile name, email address, phone number, avatar, authentication credentials, MT5 configuration IDs, push notification tokens, support messages, and chat history.
@@ -155,7 +155,7 @@ Users who have uninstalled the app or prefer to request deletion via the web can
 • **Right to Data Portability:** Obtain your personal data in a structured, commonly used, machine-readable format.
 • **Right to Withdraw Consent:** Revoke permissions (e.g., push notifications or camera access) at any time via your device settings.
 
-To exercise any of these privacy rights, please contact our Data Protection team at **privacy@ktsmarkets.com**. We respond to verified requests within 30 days without charge.`,
+To exercise any of these privacy rights, please contact our Data Protection team at **ktsfxtraining@gmail.com**. We respond to verified requests within 30 days without charge.`,
   },
   {
     id: 'children-privacy',
@@ -167,7 +167,7 @@ KTS Markets is exclusively intended and designed for individuals who are at leas
 
 • We do not knowingly market to, solicit, or collect personal information from individuals under the age of 18.
 • If we discover or are notified that an individual under the age of 18 has registered an account or submitted personal information, we will immediately deactivate the account and permanently delete all associated data from our servers.
-• If you are a parent or guardian and believe your child under 18 has accessed the app, please notify us immediately at **privacy@ktsmarkets.com**.`,
+• If you are a parent or guardian and believe your child under 18 has accessed the app, please notify us immediately at **ktsfxtraining@gmail.com**.`,
   },
   {
     id: 'trading-disclaimer',
@@ -227,8 +227,7 @@ When updates occur:
     title: '13. Contact Information & Data Protection Officer',
     content: `If you have questions, inquiries, or requests regarding this Privacy Policy or our data handling practices, please contact our dedicated Privacy & Compliance Team:
 
-• **Email:** privacy@ktsmarkets.com
-• **Customer Support:** support@ktsmarkets.com
+• **Email:** ktsfxtraining@gmail.com
 • **Official Website:** https://ktsmarkets.com
 • **Direct Account Deletion URL:** https://kts-backend-production.up.railway.app/delete-account
 • **WhatsApp Support:** +92 337 1244640
@@ -759,8 +758,8 @@ export default function PrivacyPolicy() {
                 © 2026 KTS Markets. All intellectual property, software rights, and educational curricula reserved.
               </p>
               <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '14px' }}>
-                <a href="mailto:privacy@ktsmarkets.com" style={{ color: '#D4A843', fontSize: '12px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Mail size={14} /> privacy@ktsmarkets.com
+                <a href="mailto:ktsfxtraining@gmail.com" style={{ color: '#D4A843', fontSize: '12px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Mail size={14} /> ktsfxtraining@gmail.com
                 </a>
                 <a href="https://wa.me/923371244640" target="_blank" rel="noreferrer" style={{ color: '#94A3B8', fontSize: '12px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <Phone size={14} /> +92 337 1244640

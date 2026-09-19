@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import MarketTicker from './components/MarketTicker';
 import Features from './components/Features';
 import Stats from './components/Stats';
 import LiveMarket from './components/LiveMarket';
@@ -17,6 +18,7 @@ function HomePage() {
     <div style={{ minHeight: '100vh', background: '#0A0A0A' }}>
       <Navbar />
       <Hero />
+      <MarketTicker />
       <Stats />
       <Features />
       <LiveMarket />

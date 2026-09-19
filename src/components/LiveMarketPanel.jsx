@@ -49,15 +49,23 @@ function MiniChart({ data, color, height = 80 }) {
   );
 }
 
-function PriceRow({ symbol, name, price, change, changePercent, sparkData }) {
+function PriceRow({ symbol, name, price, change, changePercent, sparkData, delay = 0 }) {
   const isUp = change >= 0;
   const color = isUp ? '#00C853' : '#FF5252';
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
 
   return (
     <div style={{
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '12px 16px', borderBottom: '1px solid rgba(30,30,30,0.8)',
-      transition: 'background 0.2s',
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(10px)',
+      transition: 'all 0.4s ease',
     }}
     onMouseEnter={e => e.currentTarget.style.background = 'rgba(212,168,67,0.05)'}
     onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
@@ -83,7 +91,7 @@ function PriceRow({ symbol, name, price, change, changePercent, sparkData }) {
           {price}
         </div>
         <div style={{ fontSize: 11, fontWeight: 600, color, fontFamily: "'Space Grotesk', monospace" }}>
-          {isUp ? '+' : ''}{changePercent}%
+          {isUp ? '+' : ''}{Number(changePercent).toFixed(2)}%
         </div>
       </div>
     </div>
@@ -95,6 +103,7 @@ export default function LiveMarketPanel() {
   const [connected, setConnected] = useState(true);
   const [lastUpdate, setLastUpdate] = useState(null);
   const [goldHistory, setGoldHistory] = useState([]);
+  const [flash, setFlash] = useState(false);
   const intervalRef = useRef(null);
 
   const generateSparkData = (basePrice, volatility, count = 20) => {
@@ -131,6 +140,8 @@ export default function LiveMarketPanel() {
           ],
         });
         setConnected(true);
+        setFlash(true);
+        setTimeout(() => setFlash(false), 500);
         setLastUpdate(new Date());
       }
     } catch (err) {
@@ -191,7 +202,8 @@ export default function LiveMarketPanel() {
       {gold && (
         <div style={{
           padding: '20px', borderBottom: '1px solid #1E1E1E',
-          background: 'rgba(212,168,67,0.03)',
+          background: flash ? 'rgba(212,168,67,0.06)' : 'rgba(212,168,67,0.03)',
+          transition: 'background 0.5s ease',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -245,6 +257,7 @@ export default function LiveMarketPanel() {
             change={item.change}
             changePercent={item.changePercent}
             sparkData={item.sparkData}
+            delay={i * 100}
           />
         ))}
       </div>
