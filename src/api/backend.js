@@ -19,7 +19,7 @@ export const api = {
 
   getSignals: async () => {
     try {
-      const res = await fetch(`${BASE_URL}/signals?per_page=5`);
+      const res = await fetch(`${BASE_URL}/signals/latest`);
       const data = await res.json();
       return data.success ? (data.data?.data || data.data || []) : [];
     } catch { return []; }
@@ -35,7 +35,7 @@ export const api = {
 
   getCourses: async () => {
     try {
-      const res = await fetch(`${BASE_URL}/education/courses?per_page=3`);
+      const res = await fetch(`${BASE_URL}/courses?per_page=3`);
       const data = await res.json();
       return data.success ? (data.data?.data || data.data || []) : [];
     } catch { return []; }
