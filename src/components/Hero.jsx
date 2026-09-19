@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center',
-      position: 'relative', overflow: 'hidden', padding: '120px 24px 80px',
+      position: 'relative', overflow: 'hidden', padding: '120px 20px 60px',
     }}>
       {/* Background Effects */}
       <div style={{
@@ -36,11 +36,11 @@ export default function Hero() {
           alignItems: 'center',
         }} className="hero-grid">
           {/* Left Content */}
-          <div>
+          <div style={{ overflow: 'hidden' }}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: 'rgba(212,168,67,0.1)', border: '1px solid rgba(212,168,67,0.2)',
-              borderRadius: 20, padding: '6px 16px', marginBottom: 24,
+              borderRadius: 20, padding: '6px 16px', marginBottom: 20,
             }} className="animate-fade-in animate-delay-1">
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#00C853' }} />
               <span style={{ fontSize: 12, color: '#D4A843', fontWeight: 600, letterSpacing: '0.5px' }}>
@@ -49,9 +49,11 @@ export default function Hero() {
             </div>
 
             <h1 style={{
-              fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(36px, 5vw, 64px)',
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: 'clamp(30px, 7vw, 64px)',
               fontWeight: 800, lineHeight: 1.1, marginBottom: 20,
               letterSpacing: '-1px',
+              wordBreak: 'break-word',
             }} className="animate-fade-in animate-delay-2">
               Trade Smarter<br />
               with <span style={{
@@ -62,20 +64,20 @@ export default function Hero() {
             </h1>
 
             <p style={{
-              fontSize: 17, color: '#999', lineHeight: 1.7,
-              maxWidth: 480, marginBottom: 32,
+              fontSize: 'clamp(14px, 3vw, 17px)', color: '#999', lineHeight: 1.7,
+              maxWidth: 480, marginBottom: 28,
             }} className="animate-fade-in animate-delay-3">
               KTS Markets combines institutional-grade analysis with AI technology.
               Automate your Gold trading with our proven bot and learn from expert courses.
             </p>
 
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }} className="animate-fade-in animate-delay-4">
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'inherit' }} className="animate-fade-in animate-delay-4">
               <a href="https://play.google.com/store/apps/details?id=com.ktsmarkets" target="_blank" rel="noreferrer" style={{
                 display: 'flex', alignItems: 'center', gap: 10,
                 background: 'linear-gradient(135deg, #D4A843, #B8922E)',
-                color: '#0A0A0A', padding: '14px 28px', borderRadius: 10,
-                fontSize: 15, fontWeight: 700, textDecoration: 'none',
-                transition: 'all 0.3s',
+                color: '#0A0A0A', padding: '13px 24px', borderRadius: 10,
+                fontSize: 14, fontWeight: 700, textDecoration: 'none',
+                transition: 'all 0.3s', whiteSpace: 'nowrap',
               }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 30px rgba(212,168,67,0.4)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
@@ -85,9 +87,9 @@ export default function Hero() {
               <a href="#features" style={{
                 display: 'flex', alignItems: 'center', gap: 8,
                 background: 'transparent', color: '#D4A843',
-                border: '1px solid rgba(212,168,67,0.3)', padding: '14px 28px',
-                borderRadius: 10, fontSize: 15, fontWeight: 600, textDecoration: 'none',
-                transition: 'all 0.3s',
+                border: '1px solid rgba(212,168,67,0.3)', padding: '13px 24px',
+                borderRadius: 10, fontSize: 14, fontWeight: 600, textDecoration: 'none',
+                transition: 'all 0.3s', whiteSpace: 'nowrap',
               }}
               onMouseEnter={e => { e.currentTarget.style.background = 'rgba(212,168,67,0.1)'; }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
@@ -98,14 +100,14 @@ export default function Hero() {
 
             {/* Trust Badges */}
             <div style={{
-              display: 'flex', gap: 24, marginTop: 40, flexWrap: 'wrap',
+              display: 'flex', gap: 16, marginTop: 32, flexWrap: 'wrap', justifyContent: 'inherit',
             }} className="animate-fade-in animate-delay-4">
               {[
-                { icon: <Shield size={16} />, text: 'Secure Trading' },
-                { icon: <Zap size={16} />, text: 'Instant Signals' },
-                { icon: <Brain size={16} />, text: 'AI Analysis' },
+                { icon: <Shield size={14} />, text: 'Secure Trading' },
+                { icon: <Zap size={14} />, text: 'Instant Signals' },
+                { icon: <Brain size={14} />, text: 'AI Analysis' },
               ].map(b => (
-                <div key={b.text} style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#666', fontSize: 13 }}>
+                <div key={b.text} style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#666', fontSize: 12 }}>
                   <span style={{ color: '#D4A843' }}>{b.icon}</span> {b.text}
                 </div>
               ))}
@@ -118,13 +120,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; text-align: center; }
-          .hero-visual { display: none !important; }
-        }
-      `}</style>
     </section>
   );
 }

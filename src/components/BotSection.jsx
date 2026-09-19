@@ -17,10 +17,10 @@ export default function BotSection() {
     <>
       {/* Bot Section */}
       <section id="bot" style={{
-        padding: '100px 24px', maxWidth: 1200, margin: '0 auto',
+        padding: '60px 16px', maxWidth: 1200, margin: '0 auto',
       }}>
         <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40,
+          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32,
           alignItems: 'center',
         }} className="bot-grid">
           <div>
@@ -29,7 +29,7 @@ export default function BotSection() {
               letterSpacing: '2px', textTransform: 'uppercase',
             }}>Automated Trading</span>
             <h2 style={{
-              fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(28px, 4vw, 40px)',
+              fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(22px, 5vw, 40px)',
               fontWeight: 800, marginTop: 12, lineHeight: 1.2,
             }}>
               Let AI Trade{' '}
@@ -38,47 +38,47 @@ export default function BotSection() {
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
               }}>For You</span>
             </h2>
-            <p style={{ fontSize: 15, color: '#888', lineHeight: 1.7, marginTop: 16, maxWidth: 440 }}>
+            <p style={{ fontSize: 14, color: '#888', lineHeight: 1.7, marginTop: 14, maxWidth: 440 }}>
               Our AI bot analyzes Gold (XAUUSD) markets 24/7 using Smart Money Concepts,
               executes trades automatically, and manages your risk with precision.
             </p>
 
-            <div style={{ display: 'flex', gap: 12, marginTop: 28, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 10, marginTop: 24, flexWrap: 'wrap' }}>
               <a href="https://play.google.com/store/apps/details?id=com.ktsmarkets" target="_blank" rel="noreferrer" style={{
                 display: 'flex', alignItems: 'center', gap: 8,
                 background: 'linear-gradient(135deg, #D4A843, #B8922E)',
-                color: '#0A0A0A', padding: '12px 24px', borderRadius: 10,
-                fontSize: 14, fontWeight: 700, textDecoration: 'none',
+                color: '#0A0A0A', padding: '12px 20px', borderRadius: 10,
+                fontSize: 13, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap',
               }}>
-                <Bot size={18} /> Start Trading
+                <Bot size={16} /> Start Trading
               </a>
             </div>
           </div>
 
           {/* Bot Stats Card */}
           <div style={{
-            background: '#141414', borderRadius: 20, border: '1px solid #1E1E1E',
-            padding: 30,
+            background: '#141414', borderRadius: 18, border: '1px solid #1E1E1E',
+            padding: 24,
           }}>
             {loading ? (
-              <div style={{ textAlign: 'center', padding: 40, color: '#666' }}>Loading...</div>
+              <div style={{ textAlign: 'center', padding: 30, color: '#666', fontSize: 13 }}>Loading...</div>
             ) : bot ? (
               <>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <div style={{
-                      width: 48, height: 48, borderRadius: 12,
+                      width: 40, height: 40, borderRadius: 10,
                       background: 'linear-gradient(135deg, #D4A843, #B8922E)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      <Bot size={24} color="#0A0A0A" />
+                      <Bot size={20} color="#0A0A0A" />
                     </div>
                     <div>
-                      <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 700 }}>
+                      <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 14, fontWeight: 700 }}>
                         {bot.name || 'KTS Bot'}
                       </h3>
                       <span style={{
-                        fontSize: 11, fontWeight: 700,
+                        fontSize: 10, fontWeight: 700,
                         color: bot.status === 'active' ? '#00C853' : '#FF4444',
                         textTransform: 'uppercase',
                       }}>
@@ -86,10 +86,10 @@ export default function BotSection() {
                       </span>
                     </div>
                   </div>
-                  {bot.auto_trade ? <Play size={20} color="#00C853" /> : <Pause size={20} color="#666" />}
+                  {bot.auto_trade ? <Play size={18} color="#00C853" /> : <Pause size={18} color="#666" />}
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                   {[
                     { label: 'Total Trades', value: bot.total_trades || 0 },
                     { label: 'Win Rate', value: `${((bot.winning_trades || 0) / Math.max(bot.total_trades || 1, 1) * 100).toFixed(1)}%` },
@@ -97,12 +97,12 @@ export default function BotSection() {
                     { label: 'TP / SL', value: `${bot.take_profit_pips || 10}/${bot.stop_loss_pips || 5}` },
                   ].map(s => (
                     <div key={s.label} style={{
-                      background: '#1A1A1A', borderRadius: 10, padding: 14,
+                      background: '#1A1A1A', borderRadius: 10, padding: 12,
                     }}>
-                      <div style={{ fontSize: 11, color: '#666', marginBottom: 4 }}>{s.label}</div>
+                      <div style={{ fontSize: 10, color: '#666', marginBottom: 4 }}>{s.label}</div>
                       <div style={{
                         fontFamily: "'Space Grotesk', sans-serif",
-                        fontSize: 18, fontWeight: 700, color: '#FFF',
+                        fontSize: 15, fontWeight: 700, color: '#FFF',
                       }}>{s.value}</div>
                     </div>
                   ))}
@@ -110,13 +110,13 @@ export default function BotSection() {
 
                 {bot.error_message && (
                   <div style={{
-                    marginTop: 12, background: 'rgba(255,68,68,0.1)',
-                    borderRadius: 8, padding: 10, fontSize: 12, color: '#FF4444',
+                    marginTop: 10, background: 'rgba(255,68,68,0.1)',
+                    borderRadius: 8, padding: 8, fontSize: 11, color: '#FF4444',
                   }}>{bot.error_message}</div>
                 )}
               </>
             ) : (
-              <div style={{ textAlign: 'center', padding: 40, color: '#666' }}>
+              <div style={{ textAlign: 'center', padding: 30, color: '#666', fontSize: 13 }}>
                 Bot not configured yet
               </div>
             )}
@@ -126,15 +126,15 @@ export default function BotSection() {
 
       {/* Courses Section */}
       <section id="courses" style={{
-        padding: '80px 24px 100px', maxWidth: 1200, margin: '0 auto',
+        padding: '60px 16px 80px', maxWidth: 1200, margin: '0 auto',
       }}>
-        <div style={{ textAlign: 'center', marginBottom: 50 }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <span style={{
             fontSize: 12, color: '#CE93D8', fontWeight: 700,
             letterSpacing: '2px', textTransform: 'uppercase',
           }}>Free Education</span>
           <h2 style={{
-            fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(28px, 4vw, 42px)',
+            fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(24px, 5vw, 42px)',
             fontWeight: 800, marginTop: 12,
           }}>
             Learn Trading{' '}
@@ -146,61 +146,55 @@ export default function BotSection() {
         </div>
 
         <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 20,
-        }}>
+          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: 16,
+        }} className="courses-grid">
           {loading ? (
             [1,2,3].map(i => (
               <div key={i} style={{
-                background: '#141414', borderRadius: 16, padding: 24,
-                border: '1px solid #1E1E1E', minHeight: 160,
+                background: '#141414', borderRadius: 16, padding: 20,
+                border: '1px solid #1E1E1E', minHeight: 140,
               }}>
-                <div style={{ width: 80, height: 12, background: '#1E1E1E', borderRadius: 4, marginBottom: 12 }} />
-                <div style={{ width: '60%', height: 18, background: '#1E1E1E', borderRadius: 4, marginBottom: 8 }} />
-                <div style={{ width: '80%', height: 12, background: '#1E1E1E', borderRadius: 4 }} />
+                <div style={{ width: 70, height: 10, background: '#1E1E1E', borderRadius: 4, marginBottom: 10 }} />
+                <div style={{ width: '60%', height: 16, background: '#1E1E1E', borderRadius: 4, marginBottom: 8 }} />
+                <div style={{ width: '80%', height: 10, background: '#1E1E1E', borderRadius: 4 }} />
               </div>
             ))
           ) : courses.length > 0 ? courses.map((c, i) => (
             <div key={i} style={{
               background: '#141414', borderRadius: 16, border: '1px solid #1E1E1E',
-              padding: 24, transition: 'all 0.3s', cursor: 'pointer',
+              padding: 20, transition: 'all 0.3s', cursor: 'pointer',
             }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = '#CE93D840'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = '#1E1E1E'; e.currentTarget.style.transform = 'translateY(0)'; }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-                <Award size={16} color="#CE93D8" />
-                <span style={{ fontSize: 11, color: '#CE93D8', fontWeight: 600, textTransform: 'uppercase' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+                <Award size={14} color="#CE93D8" />
+                <span style={{ fontSize: 10, color: '#CE93D8', fontWeight: 600, textTransform: 'uppercase' }}>
                   {c.category?.name || 'Course'}
                 </span>
               </div>
               <h3 style={{
-                fontFamily: "'Space Grotesk', sans-serif", fontSize: 17,
+                fontFamily: "'Space Grotesk', sans-serif", fontSize: 15,
                 fontWeight: 700, marginBottom: 8,
               }}>{c.title}</h3>
-              <p style={{ fontSize: 13, color: '#888', lineHeight: 1.5 }}>
+              <p style={{ fontSize: 12, color: '#888', lineHeight: 1.5 }}>
                 {c.description ? c.description.substring(0, 100) + '...' : 'Learn trading concepts and strategies.'}
               </p>
               <div style={{
-                marginTop: 14, display: 'flex', alignItems: 'center', gap: 6,
-                fontSize: 12, color: '#00C853', fontWeight: 600,
+                marginTop: 12, display: 'flex', alignItems: 'center', gap: 5,
+                fontSize: 11, color: '#00C853', fontWeight: 600,
               }}>
-                <Play size={12} /> Free Access
+                <Play size={10} /> Free Access
               </div>
             </div>
           )) : (
             <div style={{
-              gridColumn: '1 / -1', textAlign: 'center', padding: 40, color: '#666',
+              gridColumn: '1 / -1', textAlign: 'center', padding: 30, color: '#666', fontSize: 13,
             }}>Courses coming soon</div>
           )}
         </div>
       </section>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .bot-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </>
   );
 }

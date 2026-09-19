@@ -1,4 +1,4 @@
-import { Shield, ChevronDown, ChevronUp } from 'lucide-react';
+import { Shield, ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import Logo from '../components/Logo';
 
@@ -268,6 +268,7 @@ function AccordionSection({ section, isOpen, onToggle }) {
 
 export default function PrivacyPolicy() {
   const [openSections, setOpenSections] = useState(['information-collected']);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleSection = (id) => {
     setOpenSections(prev =>
@@ -285,16 +286,18 @@ export default function PrivacyPolicy() {
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         background: 'rgba(10,10,10,0.95)', backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid #1E1E1E', padding: '0 24px',
+        borderBottom: '1px solid #1E1E1E', padding: '0 16px',
       }}>
         <div style={{
           maxWidth: 1200, margin: '0 auto', display: 'flex',
-          alignItems: 'center', justifyContent: 'space-between', height: 72,
+          alignItems: 'center', justifyContent: 'space-between', height: 64,
         }}>
           <a href="/" style={{ textDecoration: 'none' }}>
-            <Logo size={36} />
+            <Logo size={32} />
           </a>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+
+          {/* Desktop Links */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }} className="privacy-nav-links">
             <a href="/" style={{
               color: '#999', textDecoration: 'none', fontSize: 14,
               fontWeight: 500, transition: 'color 0.2s',
@@ -311,19 +314,48 @@ export default function PrivacyPolicy() {
             >Features</a>
             <a href="https://play.google.com/store/apps/details?id=com.ktsmarkets" target="_blank" rel="noreferrer" style={{
               background: 'linear-gradient(135deg, #D4A843, #B8922E)',
-              color: '#0A0A0A', padding: '10px 24px', borderRadius: 8,
-              fontSize: 14, fontWeight: 700, textDecoration: 'none',
+              color: '#0A0A0A', padding: '8px 20px', borderRadius: 8,
+              fontSize: 13, fontWeight: 700, textDecoration: 'none',
             }}>Download App</a>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{
+            display: 'none', background: 'none', border: 'none',
+            color: '#D4A843', cursor: 'pointer', padding: 4,
+          }} className="privacy-mobile-btn">
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div style={{
+            position: 'absolute', top: 64, left: 0, right: 0,
+            background: 'rgba(10,10,10,0.98)', borderBottom: '1px solid #1E1E1E',
+            padding: '16px', display: 'flex', flexDirection: 'column', gap: 14,
+          }}>
+            <a href="/" onClick={() => setMobileMenuOpen(false)} style={{
+              color: '#CCC', textDecoration: 'none', fontSize: 15, fontWeight: 500,
+            }}>Home</a>
+            <a href="/#features" onClick={() => setMobileMenuOpen(false)} style={{
+              color: '#CCC', textDecoration: 'none', fontSize: 15, fontWeight: 500,
+            }}>Features</a>
+            <a href="https://play.google.com/store/apps/details?id=com.ktsmarkets" target="_blank" rel="noreferrer" style={{
+              background: 'linear-gradient(135deg, #D4A843, #B8922E)',
+              color: '#0A0A0A', padding: '10px 20px', borderRadius: 8,
+              fontSize: 13, fontWeight: 700, textDecoration: 'none', textAlign: 'center',
+            }}>Download App</a>
+          </div>
+        )}
       </nav>
 
       {/* Content */}
       <div style={{
-        maxWidth: 800, margin: '0 auto', padding: '100px 24px 60px',
+        maxWidth: 800, margin: '0 auto', padding: '90px 16px 50px',
       }}>
         {/* Title */}
-        <div style={{ textAlign: 'center', marginBottom: 50 }}>
+        <div style={{ textAlign: 'center', marginBottom: 36 }}>
           <div style={{
             width: 64, height: 64, borderRadius: 16,
             background: 'rgba(212,168,67,0.1)', border: '1px solid rgba(212,168,67,0.2)',
@@ -391,7 +423,7 @@ export default function PrivacyPolicy() {
         {/* Sections */}
         <div style={{
           background: '#141414', border: '1px solid #1E1E1E',
-          borderRadius: 16, padding: '8px 24px',
+          borderRadius: 16, padding: '6px 16px',
         }}>
           {sections.map(section => (
             <AccordionSection

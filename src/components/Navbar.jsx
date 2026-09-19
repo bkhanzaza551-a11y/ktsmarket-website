@@ -26,7 +26,7 @@ export default function Navbar() {
       backdropFilter: scrolled ? 'blur(20px)' : 'none',
       borderBottom: scrolled ? '1px solid #1E1E1E' : '1px solid transparent',
       transition: 'all 0.3s ease',
-      padding: '0 24px',
+      padding: '0 16px',
     }}>
       <div style={{
         maxWidth: 1200, margin: '0 auto', display: 'flex',
@@ -74,7 +74,7 @@ export default function Navbar() {
         <div style={{
           position: 'absolute', top: 72, left: 0, right: 0,
           background: 'rgba(10,10,10,0.98)', borderBottom: '1px solid #1E1E1E',
-          padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 16,
+          padding: '16px', display: 'flex', flexDirection: 'column', gap: 14,
         }}>
           {links.map(l => (
             <a key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={{

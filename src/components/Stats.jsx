@@ -31,25 +31,25 @@ function AnimatedCounter({ end, duration = 2000, suffix = '' }) {
 }
 
 const stats = [
-  { icon: <Users size={24} />, value: 5000, suffix: '+', label: 'Active Traders', color: '#D4A843' },
-  { icon: <TrendingUp size={24} />, value: 15000, suffix: '+', label: 'Signals Generated', color: '#00C853' },
-  { icon: <Award size={24} />, value: 50, suffix: '+', label: 'Free Courses', color: '#CE93D8' },
-  { icon: <Clock size={24} />, value: 24, suffix: '/7', label: 'Market Coverage', color: '#4FC3F7' },
+  { icon: <Users size={22} />, value: 5000, suffix: '+', label: 'Active Traders', color: '#D4A843' },
+  { icon: <TrendingUp size={22} />, value: 15000, suffix: '+', label: 'Signals Generated', color: '#00C853' },
+  { icon: <Award size={22} />, value: 50, suffix: '+', label: 'Free Courses', color: '#CE93D8' },
+  { icon: <Clock size={22} />, value: 24, suffix: '/7', label: 'Market Coverage', color: '#4FC3F7' },
 ];
 
 export default function Stats() {
   return (
     <section style={{
-      padding: '60px 24px', maxWidth: 1200, margin: '0 auto',
+      padding: '40px 16px', maxWidth: 1200, margin: '0 auto',
     }}>
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: 20,
-      }}>
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+        gap: 12,
+      }} className="stats-grid">
         {stats.map((s, i) => (
           <div key={i} style={{
             background: '#141414', border: '1px solid #1E1E1E',
-            borderRadius: 16, padding: '28px 24px', textAlign: 'center',
+            borderRadius: 14, padding: '20px 16px', textAlign: 'center',
             transition: 'all 0.3s',
           }}
           onMouseEnter={e => {
@@ -62,18 +62,18 @@ export default function Stats() {
           }}
           >
             <div style={{
-              width: 48, height: 48, borderRadius: 12,
+              width: 40, height: 40, borderRadius: 10,
               background: s.color + '15', display: 'flex',
               alignItems: 'center', justifyContent: 'center',
-              color: s.color, margin: '0 auto 14px',
+              color: s.color, margin: '0 auto 10px',
             }}>{s.icon}</div>
             <div style={{
-              fontFamily: "'Space Grotesk', sans-serif", fontSize: 32,
+              fontFamily: "'Space Grotesk', sans-serif", fontSize: 26,
               fontWeight: 800, color: '#FFF', marginBottom: 4,
             }}>
               <AnimatedCounter end={s.value} suffix={s.suffix} />
             </div>
-            <div style={{ fontSize: 13, color: '#666', fontWeight: 500 }}>{s.label}</div>
+            <div style={{ fontSize: 12, color: '#666', fontWeight: 500 }}>{s.label}</div>
           </div>
         ))}
       </div>

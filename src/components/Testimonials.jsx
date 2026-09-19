@@ -27,15 +27,15 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <section style={{
-      padding: '80px 24px', maxWidth: 1200, margin: '0 auto',
+      padding: '60px 16px', maxWidth: 1200, margin: '0 auto',
     }}>
-      <div style={{ textAlign: 'center', marginBottom: 50 }}>
+      <div style={{ textAlign: 'center', marginBottom: 32 }}>
         <span style={{
           fontSize: 12, color: '#FFB74D', fontWeight: 700,
           letterSpacing: '2px', textTransform: 'uppercase',
         }}>Testimonials</span>
         <h2 style={{
-          fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(28px, 4vw, 42px)',
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(24px, 5vw, 42px)',
           fontWeight: 800, marginTop: 12,
         }}>
           Trusted by{' '}
@@ -47,13 +47,13 @@ export default function Testimonials() {
       </div>
 
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: 20,
-      }}>
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gap: 16,
+      }} className="testimonials-grid">
         {testimonials.map((t, i) => (
           <div key={i} style={{
             background: '#141414', border: '1px solid #1E1E1E',
-            borderRadius: 16, padding: 28, position: 'relative',
+            borderRadius: 16, padding: 22, position: 'relative',
             transition: 'all 0.3s',
           }}
           onMouseEnter={e => {
@@ -65,29 +65,29 @@ export default function Testimonials() {
             e.currentTarget.style.transform = 'translateY(0)';
           }}
           >
-            <Quote size={32} color="#D4A84320" style={{ position: 'absolute', top: 20, right: 20 }} />
+            <Quote size={28} color="#D4A84320" style={{ position: 'absolute', top: 16, right: 16 }} />
 
-            <div style={{ display: 'flex', gap: 2, marginBottom: 16 }}>
+            <div style={{ display: 'flex', gap: 2, marginBottom: 12 }}>
               {[...Array(t.rating)].map((_, j) => (
-                <Star key={j} size={14} fill="#FFB74D" color="#FFB74D" />
+                <Star key={j} size={13} fill="#FFB74D" color="#FFB74D" />
               ))}
             </div>
 
             <p style={{
-              fontSize: 14, color: '#999', lineHeight: 1.7,
-              marginBottom: 20, fontStyle: 'italic',
+              fontSize: 13, color: '#999', lineHeight: 1.7,
+              marginBottom: 16, fontStyle: 'italic',
             }}>"{t.text}"</p>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <div style={{
-                width: 40, height: 40, borderRadius: 10,
+                width: 36, height: 36, borderRadius: 9,
                 background: 'linear-gradient(135deg, #D4A843, #B8922E)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 14, fontWeight: 700, color: '#0A0A0A',
+                fontSize: 12, fontWeight: 700, color: '#0A0A0A',
               }}>{t.avatar}</div>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: '#FFF' }}>{t.name}</div>
-                <div style={{ fontSize: 12, color: '#666' }}>{t.role}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#FFF' }}>{t.name}</div>
+                <div style={{ fontSize: 11, color: '#666' }}>{t.role}</div>
               </div>
             </div>
           </div>
