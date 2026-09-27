@@ -81,7 +81,7 @@ const sections = [
 We engage reputable third-party infrastructure providers to support our operations under strict confidentiality and security agreements:
 • **Google Firebase:** For push notification delivery (FCM), crash reporting, and Google OAuth sign-in authentication.
 • **Groq AI:** For high-speed API processing of AI chatbot prompts and educational inquiries (transferred securely, not used for external AI training).
-• **Railway & Cloud Infrastructure:** For enterprise-grade encrypted backend hosting, database management, and API servers.
+• **Vercel & Cloud Infrastructure:** For enterprise-grade encrypted backend hosting, database management, and API servers.
 
 **B. Strict No-Sale Policy:**
 **We NEVER sell, rent, monetize, or trade your personal data to third-party advertisers, data brokers, or marketing networks.**
@@ -120,7 +120,7 @@ You can permanently delete your account directly inside the KTS Markets mobile a
 
 **B. Web-Based Deletion Request (Without Reinstalling the App):**
 Users who have uninstalled the app or prefer to request deletion via the web can submit an account deletion request online:
-• **Direct Deletion URL:** https://kts-backend-production.up.railway.app/delete-account
+• **Direct Deletion URL:** https://kts-backend.vercel.app/delete-account
 • **Email Request:** Send an email from your registered email address to **ktsfxtraining@gmail.com** with the subject line *"Account Deletion Request"*.
 
 **C. Data Purge Details & Retention Timeline:**
@@ -229,7 +229,7 @@ When updates occur:
 
 • **Email:** ktsfxtraining@gmail.com
 • **Official Website:** https://ktsmarkets.com
-• **Direct Account Deletion URL:** https://kts-backend-production.up.railway.app/delete-account
+• **Direct Account Deletion URL:** https://kts-backend.vercel.app/delete-account
 • **WhatsApp Support:** +92 337 1244640
 
 **Data Protection Officer (DPO):**
@@ -376,7 +376,7 @@ export default function PrivacyPolicy() {
             <a href="/#features" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: 14, fontWeight: 500, transition: 'color 0.2s' }}>
               Features
             </a>
-            <a href="https://kts-backend-production.up.railway.app/delete-account" target="_blank" rel="noreferrer" style={{ 
+            <a href="https://kts-backend.vercel.app/delete-account" target="_blank" rel="noreferrer" style={{ 
               color: '#EF4444', 
               textDecoration: 'none', 
               fontSize: 13, 
@@ -425,7 +425,7 @@ export default function PrivacyPolicy() {
           }}>
             <a href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#E2E8F0', textDecoration: 'none', fontSize: 16 }}>Home</a>
             <a href="/#features" onClick={() => setMobileMenuOpen(false)} style={{ color: '#E2E8F0', textDecoration: 'none', fontSize: 16 }}>Features</a>
-            <a href="https://kts-backend-production.up.railway.app/delete-account" target="_blank" rel="noreferrer" style={{ color: '#EF4444', textDecoration: 'none', fontSize: 15, fontWeight: 600 }}>Delete Account Request</a>
+            <a href="https://kts-backend.vercel.app/delete-account" target="_blank" rel="noreferrer" style={{ color: '#EF4444', textDecoration: 'none', fontSize: 15, fontWeight: 600 }}>Delete Account Request</a>
             <a href="https://play.google.com/store/apps/details?id=com.ktsmarkets" target="_blank" rel="noreferrer" style={{
               background: 'linear-gradient(135deg, #D4A843, #B8922E)',
               color: '#07090C', padding: '12px 20px', borderRadius: 10,
@@ -616,7 +616,7 @@ export default function PrivacyPolicy() {
                 Request complete erasure of your profile and data online without the app.
               </p>
               <a
-                href="https://kts-backend-production.up.railway.app/delete-account"
+                href="https://kts-backend.vercel.app/delete-account"
                 target="_blank"
                 rel="noreferrer"
                 style={{
@@ -667,7 +667,7 @@ export default function PrivacyPolicy() {
                 </div>
               </div>
               <a
-                href="https://kts-backend-production.up.railway.app/delete-account"
+                href="https://kts-backend.vercel.app/delete-account"
                 target="_blank"
                 rel="noreferrer"
                 style={{

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://kts-backend-production.up.railway.app/api/v1';
+const BASE_URL = 'https://kts-backend.vercel.app/api/v1';
 
 export const api = {
   getMarketTicker: async () => {
